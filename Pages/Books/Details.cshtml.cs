@@ -31,7 +31,8 @@ namespace Stan_Iustina_Lab2.Pages.Books
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Book == null) return NotFound();
+            if (Book == null)
+            return NotFound();
             return Page();
         
             var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);

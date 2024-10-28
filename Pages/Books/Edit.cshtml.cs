@@ -47,9 +47,9 @@ namespace Stan_Iustina_Lab2.Pages.Books
             var authorList = _context.Author.Select(x => new
             {
                 x.ID,
-                FullName = x.LastName + " " + x.FirstName
+                AuthorsName = x.FirstName + " " + x.LastName
             });
-            ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
+            ViewData["AuthorID"] = new SelectList(authorList, "ID", "AuthorsName");
             ViewData["PublisherID"] = new SelectList(_context.Publisher, "ID",
            "PublisherName");
             return Page();

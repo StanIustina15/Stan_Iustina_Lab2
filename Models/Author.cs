@@ -7,7 +7,7 @@ namespace Stan_Iustina_Lab2.Models
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName
+        public string AuthorName
         {
             get
             {
