@@ -66,19 +66,22 @@ namespace Stan_Iustina_Lab2.Pages.Books
                 switch (sortOrder)
                 {
                     case "title_desc":
-                        BookD.Books = BookD.Books.OrderByDescending(s =>
-                       s.Title);
+                        BookD.Books = BookD.Books.OrderByDescending(b =>
+                       b.Title);
                         break;
                     case "author_desc":
-                        BookD.Books = BookD.Books.OrderByDescending(s =>
-                       s.Author.AuthorName);
+                        BookD.Books = BookD.Books.OrderByDescending(b =>
+                       b.Author.AuthorName);
                         break;
                     case "author":
-                        BookD.Books = BookD.Books.OrderBy(s =>
-                       s.Author.AuthorName);
+                        BookD.Books = BookD.Books.OrderBy(b =>
+                       b.Author.AuthorName);
+                        break;
+                    case "none":
+                        
                         break;
                     default:
-                        BookD.Books = BookD.Books.OrderBy(s => s.Title);
+                        BookD.Books = BookD.Books.OrderBy(b => b.Title);
                         break;
                 }
             }
