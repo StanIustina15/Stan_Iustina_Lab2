@@ -36,7 +36,7 @@ namespace Stan_Iustina_Lab2.Pages.Books
             TitleSort = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             AuthorSort = sortOrder == "author" ? "author_desc" : "author";
 
-            CurrentFilter = searchString;
+            
 
             BookD.Books = await _context.Book
             .Include(b => b.Publisher)
@@ -47,22 +47,7 @@ namespace Stan_Iustina_Lab2.Pages.Books
             .OrderBy(b => b.Title)
             .ToListAsync();
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                BookD.Books = BookD.Books.Where(s => s.Author.FirstName.Contains(searchString)
-
-               || s.Author.LastName.Contains(searchString)
-               || s.Title.Contains(searchString));
-
-
-
-                if (id != null)
-                {
-                    BookID = id.Value;
-                    Book book = BookD.Books
-                    .Where(i => i.ID == id.Value).Single();
-                    BookD.Categories = book.BookCategories.Select(s => s.Category);
-                }
+            
                 switch (sortOrder)
                 {
                     case "title_desc":
@@ -84,8 +69,28 @@ namespace Stan_Iustina_Lab2.Pages.Books
                         BookD.Books = BookD.Books.OrderBy(b => b.Title);
                         break;
                 }
+            CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                BookD.Books = BookD.Books.Where(s => s.Author.FirstName.Contains(searchString)
+
+               || s.Author.LastName.Contains(searchString)
+               || s.Title.Contains(searchString));
+
+
+
+                if (id != null)
+                {
+                    BookID = id.Value;
+                    Book book = BookD.Books
+                    .Where(i => i.ID == id.Value).Single();
+                    BookD.Categories = book.BookCategories.Select(s => s.Category);
+                }
             }
         }
+
+        }
     }
-}
+
 
