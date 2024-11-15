@@ -26,6 +26,8 @@ namespace Stan_Iustina_Lab2.Pages.Books
             if (id == null) return NotFound();
 
             Book = await _context.Book
+                .Include(b => b.Author)            
+                .Include(b => b.Publisher)
                 .Include(b => b.BookCategories)
                 .ThenInclude(bc => bc.Category)
                 .AsNoTracking()
